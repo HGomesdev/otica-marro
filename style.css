@@ -1,0 +1,131 @@
+:root {
+    --nav-bg: #f5f2eb; 
+    --texto-nav: #8a7c6b; 
+    --branco: #ffffff;
+    --fundo-site: #faf8f5;
+    --texto-escuro: #3a332d;
+    --areia-escura: #e0d5c1;
+    --terracota: #b35c44;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--fundo-site); color: var(--texto-escuro); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+h1, h2, h3, .logo { font-family: 'Playfair Display', serif; font-weight: 400; }
+
+/* NAVBAR */
+nav { position: fixed; top: 0; width: 100%; background-color: var(--nav-bg); padding: 1.8rem 6%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: 0.5s ease; }
+nav.nav-scrolled { padding: 0.8rem 6%; background-color: rgba(245, 242, 235, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 30px rgba(0,0,0,0.05); }
+.nav-links { display: flex; align-items: center; gap: 2.5rem; transition: 0.3s ease; }
+nav a { text-decoration: none; color: var(--texto-nav); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+.logo { font-size: 2rem; letter-spacing: 4px; color: var(--texto-nav); cursor: pointer; }
+
+/* MENU MOBILE TOGGLE (Corrigido Z-Index e Animação) */
+.menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 6px; z-index: 1001; }
+.bar { width: 25px; height: 2px; background-color: var(--texto-nav); transition: 0.4s; }
+
+/* Animação do X no botão */
+.menu-toggle.toggle .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+.menu-toggle.toggle .bar:nth-child(2) { opacity: 0; }
+.menu-toggle.toggle .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -7px); }
+
+/* BOTÕES COM EFEITO */
+.btn-efeito {
+    position: relative;
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background-color: var(--texto-escuro);
+    color: var(--nav-bg);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+.btn-efeito::before { content: ''; position: absolute; top: 100%; left: 0; width: 100%; height: 100%; background-color: var(--terracota); z-index: -1; transition: top 0.4s cubic-bezier(0.2, 1, 0.3, 1); }
+.btn-efeito:hover::before { top: 0; }
+.btn-efeito:hover { color: var(--branco); }
+
+/* HERO (Corte Gemini) */
+.hero { position: relative; height: 100vh; width: 100%; display: flex; align-items: center; padding-left: 10%; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('hero-marro.png'); background-size: cover; background-position: center; transform: scale(1.15); z-index: -1; }
+.hero h1 { font-size: 4.5rem; line-height: 1.1; color: var(--nav-bg); margin-bottom: 2.5rem; max-width: 800px; }
+
+/* TICKER MARCAS */
+.marcas-ticker { width: 100%; background-color: var(--nav-bg); padding: 1.5rem 0; overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(0,0,0,0.03); border-bottom: 1px solid rgba(0,0,0,0.03); }
+.ticker-track { display: inline-flex; animation: scrollMarcas 35s linear infinite; }
+.ticker-track span { letter-spacing: 4px; color: var(--texto-nav); font-size: 0.8rem; }
+.ticker-track .dot { margin: 0 4rem; color: var(--areia-escura); }
+@keyframes scrollMarcas { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* SEÇÕES */
+section { padding: 8rem 10%; text-align: center; max-width: 1400px; margin: 0 auto; }
+.subtitle { display: block; text-transform: uppercase; letter-spacing: 4px; font-size: 0.7rem; color: var(--terracota); margin-bottom: 1.5rem; }
+section h2 { font-size: 2.8rem; margin-bottom: 2rem; }
+section p { font-size: 1.1rem; line-height: 1.8; color: var(--texto-nav); max-width: 750px; margin: 0 auto; }
+
+/* GRID PRODUTOS */
+.grid-produtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; margin-top: 4rem; }
+.img-container { background-color: var(--areia-escura); height: 480px; overflow: hidden; }
+.img-oculos { width: 100%; height: 100%; object-fit: cover; transition: 1s ease; }
+.produto:hover .img-oculos { transform: scale(1.08); }
+
+/* DEPOIMENTOS */
+.grid-depoimentos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+.card-depoimento { background: var(--nav-bg); padding: 3rem 2rem; border-radius: 2px; }
+.google-rating { margin-bottom: 3rem; }
+.stars { color: #fbbc04; font-size: 1.5rem; }
+
+/* CONTATO */
+.contato-container { display: grid; grid-template-columns: 1fr 1fr; background-color: var(--nav-bg); text-align: left; }
+.contato-info { padding: 5rem 6%; }
+.botoes-contato { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+
+/* WHATSAPP FLOAT */
+.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 2000; transition: 0.3s; }
+
+/* FOOTER */
+footer { padding: 5rem; text-align: center; background: var(--nav-bg); }
+.credit { font-size: 0.65rem; margin-top: 15px; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase; }
+
+/* REVEAL ANIMAÇÃO */
+.reveal { opacity: 0; transform: translateY(50px); transition: 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* MEDIA QUERIES */
+@media (max-width: 1024px) {
+    .hero h1 { font-size: 3.5rem; }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle { display: flex; }
+    .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 0;
+        flex-direction: column;
+        background-color: var(--nav-bg);
+        width: 80%; /* Menu ocupa boa parte da tela */
+        height: 100vh;
+        padding: 100px 30px;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+        transition: 0.5s ease-in-out;
+        z-index: 1000;
+    }
+    .nav-links.active { right: 0; }
+    
+    .hero { padding-left: 5%; justify-content: center; text-align: center; }
+    .hero h1 { font-size: 2.6rem; }
+    .hero::before { transform: scale(1.3); } 
+    
+    .contato-container { grid-template-columns: 1fr; }
+    .contato-mapa { height: 300px; }
+    
+    section h2 { font-size: 2.2rem; }
+    .btn-efeito { width: 100%; }
+}
